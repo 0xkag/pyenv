@@ -1,5 +1,29 @@
 # Version History
 
+# Release v2.3.27
+
+* Prefer OpenSSL 3 in Homebrew since 3.12 by @native-api in https://github.com/pyenv/pyenv/pull/2781
+* Fix get-pip urls for older pypy versions by @TimPansino in https://github.com/pyenv/pyenv/pull/2788
+* Update openssl url for 3.12.0rc2 by @zsol in https://github.com/pyenv/pyenv/pull/2789
+  
+## Release v2.3.26
+
+* Prevent `grep` warning in `conda.bash` by @aphedges in https://github.com/pyenv/pyenv/pull/2768
+* fix a typo in README.md by @xzmeng in https://github.com/pyenv/pyenv/pull/2769
+* use -I with ensurepip by @xaocon in https://github.com/pyenv/pyenv/pull/2764
+* Add CPython 3.12.0rc2 by @edgarrmondragon in https://github.com/pyenv/pyenv/pull/2778
+
+## Release v2.3.25
+
+* Add CPython 3.8.18, 3.9.18, 3.10.13, 3.11.5 by @edgarrmondragon in https://github.com/pyenv/pyenv/pull/2763
+ 
+## Release v2.3.24
+
+* README update: Added UNIX reference near Automatic installer by @VictorieeMan in https://github.com/pyenv/pyenv/pull/2744
+* Fix FreeBSD tests in MacOS CI by @native-api in https://github.com/pyenv/pyenv/pull/2748
+* Add CPython 3.12.0rc1 by @edgarrmondragon in https://github.com/pyenv/pyenv/pull/2752
+* [Add an updated Anaconda and Miniconda installers](https://github.com/pyenv/pyenv/commit/db871427c7a232e18ee7a6dc0182989a646ccca9)
+
 ## Release v2.3.23
 
 * Add CPython 3.12.0b4 by @edgarrmondragon in https://github.com/pyenv/pyenv/pull/2741

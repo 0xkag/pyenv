@@ -1420,7 +1420,7 @@ use_freebsd_pkg() {
   # check if FreeBSD
   if [ "FreeBSD" = "$(uname -s)" ]; then
     # use openssl if installed from Ports Collection
-    if [ -f /usr/local/include/openssl/ssl.h ]; then
+    if pkg info -e openssl; then
       package_option python configure --with-openssl="/usr/local"
     fi
 
@@ -1471,6 +1471,12 @@ use_homebrew_readline() {
 prefer_openssl11() {
   # Allow overriding the preference of OpenSSL version per definition basis (#1302, #1325, #1326)
   PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA="${PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA:-openssl@1.1 openssl}"
+  export PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA
+}
+
+prefer_openssl3() {
+  # Allow overriding the preference of OpenSSL version per definition basis (#1302, #1325, #1326)
+  PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA="${PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA:-openssl@3 openssl@1.1 openssl}"
   export PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA
 }
 
@@ -1610,7 +1616,7 @@ use_xcode_sdk_zlib() {
   local xc_sdk_path="$(xcrun --show-sdk-path 2>/dev/null || true)"
   if [ -d "$xc_sdk_path" ]; then
     echo "python-build: use zlib from xcode sdk"
-    export CFLAGS="${CFLAGS:+$CFLAGS }-I${xc_sdk_path}/usr/include"
+    export CPPFLAGS="${CPPFLAGS:+$CPPFLAGS }-I${xc_sdk_path}/usr/include"
     if is_mac -ge 1100; then
       export LDFLAGS="${LDFLAGS:+$LDFLAGS }-L${xc_sdk_path}/usr/lib"
     fi
@@ -2025,7 +2031,7 @@ build_package_ensurepip() {
     ensurepip_opts="--altinstall"
   fi
   # FIXME: `--altinstall` with `get-pip.py`
-  "$PYTHON_BIN" -s -m ensurepip ${ensurepip_opts} 1>/dev/null 2>&1 || build_package_get_pip "$@" || return 1
+  "$PYTHON_BIN" -I -m ensurepip ${ensurepip_opts} 1>/dev/null 2>&1 || build_package_get_pip "$@" || return 1
   build_package_symlink_version_suffix
 }
 
@@ -2331,7 +2337,7 @@ if [ -z "${GET_PIP_URL}" ]; then
     2.6 | 2.6.* )
       GET_PIP_URL="https://bootstrap.pypa.io/pip/2.6/get-pip.py"
       ;;
-    2.7 | 2.7.* )
+    2.7 | 2.7.* | pypy2.7 | pypy2.7-* )
       GET_PIP_URL="https://bootstrap.pypa.io/pip/2.7/get-pip.py"
       ;;
     3.2 | 3.2.* )
@@ -2343,10 +2349,10 @@ if [ -z "${GET_PIP_URL}" ]; then
     3.4 | 3.4.* )
       GET_PIP_URL="https://bootstrap.pypa.io/pip/3.4/get-pip.py"
       ;;
-    3.5 | 3.5.* )
+    3.5 | 3.5.* | pypy3.5 | pypy3.5-* )
       GET_PIP_URL="https://bootstrap.pypa.io/pip/3.5/get-pip.py"
       ;;
-    3.6 | 3.6.* )
+    3.6 | 3.6.* | pypy3.6 | pypy3.6-* )
       GET_PIP_URL="https://bootstrap.pypa.io/pip/3.6/get-pip.py"
       ;;
     * )
