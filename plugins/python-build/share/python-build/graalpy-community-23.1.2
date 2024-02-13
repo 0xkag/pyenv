@@ -1,4 +1,4 @@
-# Copyright (c) 2023, Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2024, Oracle and/or its affiliates. All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of
 # this software and associated documentation files (the "Software"), to deal in
@@ -17,23 +17,23 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-VERSION='23.1.0'
+VERSION='23.1.2'
 BUILD=''
 
 graalpy_arch="$(graalpy_architecture 2>/dev/null || true)"
 
 case "$graalpy_arch" in
 "linux-amd64" )
-  checksum="720334d90d52b5337db018ad6582953e9383c27188f08810250c2fe14a11db5a"
+  checksum="27577bded9dd742c7b9b8e5315cec286657edb5842968cc966aa451ddc8729d9"
   ;;
 "linux-aarch64" )
-  checksum="c7dc4f94413e667070f7d46f57af04c4db53383e721be9637b58cb030dfa1f58"
+  checksum="c993484132b9e196d351570ba6a74632eb8695767e383ca86ba1092c4484ff7a"
   ;;
 "macos-amd64" )
-  checksum="13583382ba716231edce1b71d53e9efba776fef003ef2f515bda9c00a831779a"
+  checksum="e74d586f114b33e55e1a6849672e1a0ea5bd372d8f4a501b532d221c61915d3c"
   ;;
 "macos-aarch64" )
-  checksum="5bc39af6938c507ec169b02a34237b6f4b286982e5be04b3109c171becc1949d"
+  checksum="d269f5fdb3e8ae323554de2876ef25d43aaa86867edc41f2b76ea53a27ee3662"
   ;;
 * )
   { echo

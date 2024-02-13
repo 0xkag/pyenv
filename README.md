@@ -238,7 +238,9 @@ As far as Pyenv is concerned, version names are simply directories under
 
 ##### Automatic installer
 
-`curl https://pyenv.run | bash`
+```bash
+curl https://pyenv.run | bash
+```
 
 For more details visit our other project:
 https://github.com/pyenv/pyenv-installer
@@ -317,14 +319,14 @@ See [Advanced configuration](#advanced-configuration) for details and more confi
     * to add to `~/.bash_profile`:
       ~~~ bash
       echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
-      echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+      echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
       echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
       ~~~
 
   - For **Zsh**:
     ~~~ zsh
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-    echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+    echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
     echo 'eval "$(pyenv init -)"' >> ~/.zshrc
     ~~~
 
